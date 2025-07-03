@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ULTIPLAY - HOME</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Lato:wght@900&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .material-symbols-outlined {
+      font-size: 1.3rem;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background-color: #1a1a1a;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-left,
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .navbar a {
+      background-color: #2b2b2b;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.3s ease, color 0.3s ease;
+      display: flex;
+      align-items: center;
+      height: 40px;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+      background-color: #3d3d3d;
+      color: #a863ff;
+    }
+
+    .settings-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background-color: #2b2b2b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .settings-icon:hover {
+      background-color: #3d3d3d;
+      color: #a863ff;
+    }
+
+    .settings-icon .material-symbols-outlined {
+      font-size: 22px;
+      margin: 0;
+    }
+
+    .welcome-section {
+      text-align: center;
+      padding: 60px 20px 40px;
+      animation: fadeUp 1.5s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .welcome-section h1 {
+      font-size: 2.8rem;
+      color: #a863ff;
+      margin-bottom: 10px;
+    }
+
+    .welcome-section p {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 600px;
+      margin: 10px auto 30px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 20px 40px;
+    }
+
+    .box {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #222;
+      transition: transform 0.2s ease;
+    }
+
+    .box:hover {
+      transform: scale(1.03);
+    }
+
+    .box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .box a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .game-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 0;
+      text-align: center;
+      font-size: 15px;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .box:hover .game-title {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+
+    .user-stats-box {
+      max-width: 340px;
+      margin: 20px auto 40px;
+      padding: 20px;
+      border-radius: 16px;
+      background-color: #1c1c1c;
+      text-align: center;
+      font-size: 1.5rem;
+      border: 2px solid #a863ff;
+      color: #fff;
+    }
+
+    .user-stats-box span {
+      color: #a863ff;
+    }
+
+    @media (max-width: 500px) {
+      .game-title {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+
+      .box {
+        width: 140px;
+        height: 140px;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+      color: #ccc;
+      background-color: rgba(0, 0, 0, 0.2);
+      user-select: none;
+    }
+
+    #updateBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      background-color: #a863ff;
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+
+    #updateBtn .material-symbols-outlined {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    #updateBtn:hover {
+      background-color: #c694ff;
+    }
+
+    #updateLog {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 280px;
+      background: rgba(25, 25, 25, 0.9);
+      backdrop-filter: blur(8px);
+      border: 2px solid #a863ff;
+      border-radius: 14px;
+      padding: 20px;
+      color: #eee;
+      display: none;
+      z-index: 998;
+    }
+
+    #updateLog .log-header {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #a863ff;
+    }
+
+    #updateLog ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    #updateLog li {
+      display: flex;
+      align-items: center;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <audio id="introSound" src="short-modern-logo-242224.mp3" preload="auto"></audio>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <a href="index.html" class="active">
+        <span class="material-symbols-outlined">home</span> Home
+      </a>
+      <a href="games.html">
+        <span class="material-symbols-outlined">sports_esports</span> Games
+      </a>
+      <a href="apps.html">
+        <span class="material-symbols-outlined">apps</span> Apps
+      </a>
+      <a href="ai.html">
+        <span class="material-symbols-outlined">smart_toy</span> AI
+      </a>
+    </div>
+    <div class="navbar-right">
+      <a href="settings.html" class="settings-icon">
+        <span class="material-symbols-outlined">settings</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Welcome -->
+  <section class="welcome-section">
+    <h1>Welcome to ULTIPLAY</h1>
+    <p>Play top web games in seconds. No installs. No loading screens. Just nonstop fun.</p>
+  </section>
+
+  <!-- Games -->
+  <div class="container">
+    <div class="box">
+      <a href="Games/1v1code.html">
+        <img src="Images/1v1lol.webp" alt="1v1.LOL" loading="lazy">
+        <div class="game-title">1V1.LOL</div>
+      </a>
+    </div>
+    <div class="box">
+      <a href="Games/2048page.html">
+        <img src="Images/2048.png" alt="2048" loading="lazy">
+        <div class="game-title">2048</div>
+      </a>
+    </div>
+    <div class="box">
+      <a href="Games/blockblastcode.html">
+        <img src="Images/blockblast.webp" alt="Block Blast" loading="lazy">
+        <div class="game-title">BLOCK BLAST</div>
+      </a>
+    </div>
+    <div class="box">
+      <a href="Games/cookieclickercode.html">
+        <img src="Images/cookieclicker.png" alt="Cookie Clicker" loading="lazy">
+        <div class="game-title">COOKIE CLICKER</div>
+      </a>
+    </div>
+  </div>
+  
+    <!-- Google AdSense Ad -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2674658827214439" crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+       style="display:block; text-align:center; margin: 30px auto;"
+       data-ad-client="ca-pub-2674658827214439"
+       data-ad-slot="5280889402"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+  <!-- Monthly Active Users Box -->
+  <div class="user-stats-box">
+    Monthly Active Users: <span id="userCount">0</span>+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    ULTIPLAY 2025©
+  </footer>
+
+  <!-- Update Log -->
+  <div id="updateLog">
+    <div class="log-header">Update Log | V1.0</div>
+    <ul>
+      <li><span class="material-symbols-outlined">build_circle</span> UI tweaks + update button</li>
+      <li><span class="material-symbols-outlined">add_circle</span> Added 4 homepage boxes</li>
+      <li><span class="material-symbols-outlined">keyboard</span> Panic key next to settings</li>
+    </ul>
+  </div>
+
+  <!-- Update Button -->
+  <button id="updateBtn" title="Toggle Update Log" aria-label="Toggle Update Log" aria-expanded="false" aria-controls="updateLog">
+    <span class="material-symbols-outlined">notifications_active</span>
+  </button>
+
+  <!-- Scripts -->
+  <script>
+    // Welcome Sound
+    document.addEventListener('click', () => {
+      const audio = document.getElementById('introSound');
+      if (audio) audio.play();
+    }, { once: true });
+
+    // User Counter Animation
+    let count = 0;
+    const target = 18345;
+    const duration = 2000;
+    const increment = target / (duration / 30);
+
+    function animateCounter() {
+      const counter = document.getElementById('userCount');
+      const interval = setInterval(() => {
+        count += Math.floor(increment);
+        if (count >= target) {
+          count = target;
+          clearInterval(interval);
+        }
+        counter.textContent = count.toLocaleString();
+      }, 30);
+    }
+
+    window.onload = animateCounter;
+
+    // Toggle Update Log
+    const updateBtn = document.getElementById('updateBtn');
+    const updateLog = document.getElementById('updateLog');
+
+    updateBtn.addEventListener('click', () => {
+      const isVisible = updateLog.style.display === 'block';
+      updateLog.style.display = isVisible ? 'none' : 'block';
+      updateBtn.setAttribute('aria-expanded', !isVisible);
+      updateLog.setAttribute('aria-hidden', isVisible ? 'true' : 'false');
+    });
+  </script>
+</body>
+</html>
