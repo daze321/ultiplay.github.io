@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ULTIPLAY - GAMES</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Lato:wght@900&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .material-symbols-outlined {
+      font-size: 1.3rem;
+      margin-right: 6px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background-color: #1a1a1a;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-left,
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .navbar a {
+      background-color: #2b2b2b;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.3s ease, color 0.3s ease;
+      display: flex;
+      align-items: center;
+      height: 40px;
+      line-height: 1;
+    }
+
+    .settings-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background-color: #2b2b2b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .settings-icon:hover {
+      background-color: #3d3d3d;
+      color: #a863ff;
+    }
+
+    .settings-icon .material-symbols-outlined {
+      font-size: 22px;
+      line-height: 1;
+      margin: 0;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+      background-color: #3d3d3d;
+      color: #a863ff;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 15px 10px;
+    }
+
+    header .main-title {
+      font-size: 2.4rem;
+      font-weight: bold;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin: 10px 0 20px;
+    }
+
+    .search-bar input {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 25px;
+      border: 1px solid #444;
+      background-color: #1f1f1f;
+      color: #fff;
+      width: 250px;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+      outline: none;
+    }
+
+    .search-bar input:focus {
+  border-color: #a863ff;
+}
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 20px 40px;
+    }
+
+    .box {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #222;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .box:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .box a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .game-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 0;
+      text-align: center;
+      font-size: 15px;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .box:hover .game-title {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+
+    @media (max-width: 500px) {
+      .game-title {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+      color: #ccc;
+      background-color: rgba(0, 0, 0, 0.2);
+      user-select: none;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="navbar-left">
+      <a href="index.html">
+        <span class="material-symbols-outlined">home</span> Home
+      </a>
+      <a href="games.html" class="active">
+        <span class="material-symbols-outlined">sports_esports</span> Games
+      </a>
+      <a href="apps.html">
+        <span class="material-symbols-outlined">apps</span> Apps
+      </a>
+      <a href="ai.html">
+        <span class="material-symbols-outlined">smart_toy</span> AI
+      </a>
+    </div>
+    <div class="navbar-right">
+      <a href="settings.html" class="settings-icon">
+        <span class="material-symbols-outlined">settings</span>
+      </a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="main-title">ULTIPLAY</div>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" id="gameSearch" placeholder="Search games..." oninput="filterGames()" />
+  </div>
+
+  <div class="container" id="gameContainer">
+   <div class="box">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfnyzJCEt-emCtrv8U1IrjfihiSIXYDkI5CeHBghrfIbFL2gw/viewform?usp=dialog">
+        <img src="Images/request.png" alt="Request Games">
+        <div class="game-title">REQUEST GAMES</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/1v1lolcode.html">
+        <img src="Images/1v1lol.webp" alt="1v1.LOL">
+        <div class="game-title">1V1.LOL</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/2048page.html">
+        <img src="Images/2048.png" alt="2048">
+        <div class="game-title">2048</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/blockblastcode.html">
+        <img src="Images/blockblast.webp" alt="Block Blast">
+        <div class="game-title">BLOCK BLAST</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/cookieclickercode.html">
+        <img src="Images/cookieclicker.png" alt="Temple Run 2">
+        <div class="game-title">COOKIE CLICKER</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/drifthunterscode.html">
+        <img src="Images/drifthunters.png" alt="Drift Hunters">
+        <div class="game-title">DRIFT HUNTERS</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/funnyshooter2code.html">
+        <img src="Images/funnyshooter2.jpeg" alt="Funny Shooter 2">
+        <div class="game-title">FUNNY SHOOTER 2</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/geometrydashpage.html">
+        <img src="Images/geometrydash.png" alt="Geometry Dash">
+        <div class="game-title">GEOMETRY DASH</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/minecraft.html">
+        <img src="Images/minecraft.webp" alt="Minecraft">
+        <div class="game-title">MINECRAFT</div>
+      </a>
+    </div>
+
+
+    <div class="box">
+      <a href="Games/monkeymartcode.html">
+        <img src="Images/monkeymart.jpg" alt="Minecraft">
+        <div class="game-title">MONKEY MART</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/melonplaygroundpage.html">
+        <img src="Images/melonplayground.jpg" alt="Melon Playground">
+        <div class="game-title">MELON PLAYGROUND</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/polytrackcode.html">
+        <img src="Images/polytrack.png" alt="Drift Hunters">
+        <div class="game-title">POLY TRACK</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/subwaysurferszurichcode.html">
+        <img src="Images/subwaysurferszurich.webp" alt="Minecraft">
+        <div class="game-title">SUBWAY SURFERS ZURICH</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/slowroadscode.html">
+        <img src="Images/slowroads.png" alt="Block Blast">
+        <div class="game-title">SLOW ROADS</div>
+      </a>
+    </div>
+
+    <div class="box">
+        <a href="Games/smashkartscode.html">
+          <img src="Images/smashkarts.webp" alt="Smash Karts">
+          <div class="game-title">SMASH KARTS</div>
+        </a>
+      </div>
+
+    <div class="box">
+      <a href="Games/snowrider3dcode.html">
+        <img src="Images/snowrider3d.png" alt="Snow Rider 3D">
+        <div class="game-title">SNOW RIDER 3D</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/survivalracecode.html">
+        <img src="Images/survivalrace.jpg" alt="Survival Race">
+        <div class="game-title">SURVIVAL RACE</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/tinyfishingcode.html">
+        <img src="Images/tinyfishing.webp" alt="Tiny Fishing">
+        <div class="game-title">TINY FISHING</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/templerun2code.html">
+        <img src="Images/templerun2.webp" alt="Temple Run 2">
+        <div class="game-title">TEMPLE RUN 2</div>
+      </a>
+    </div>
+
+    <div class="box">
+      <a href="Games/tanukisunsetcode.html">
+        <img src="Images/tanukisunset.jpg" alt="Tanuki Sunset">
+        <div class="game-title">TANUKI SUNSET</div>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    ULTIPLAY 2025©
+  </footer>
+
+  <script>
+    function filterGames() {
+      const input = document.getElementById('gameSearch').value.toLowerCase();
+      const boxes = document.querySelectorAll('.box');
+      boxes.forEach(box => {
+        const title = box.querySelector('.game-title').textContent.toLowerCase();
+        box.style.display = title.includes(input) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
