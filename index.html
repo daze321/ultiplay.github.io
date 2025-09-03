@@ -173,22 +173,6 @@
       transform: translateY(0%);
     }
 
-    .user-stats-box {
-      max-width: 340px;
-      margin: 20px auto 40px;
-      padding: 20px;
-      border-radius: 16px;
-      background-color: #1c1c1c;
-      text-align: center;
-      font-size: 1.5rem;
-      border: 2px solid #a863ff;
-      color: #fff;
-    }
-
-    .user-stats-box span {
-      color: #a863ff;
-    }
-
     @media (max-width: 500px) {
       .game-title {
         opacity: 1;
@@ -208,6 +192,48 @@
       color: #ccc;
       background-color: rgba(0, 0, 0, 0.2);
       user-select: none;
+    }
+
+    /* Footer Links Improved */
+    .footer-links {
+      text-align: center;
+      padding: 25px 0 15px;
+      background-color: #111;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .footer-links a {
+      padding: 8px 16px;
+      background-color: #1f1f1f;
+      border-radius: 20px;
+      color: #a863ff;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      background-color: #2d2d2d;
+      color: #c694ff;
+      transform: translateY(-2px);
+    }
+
+    /* Sticky Version Box */
+    .version-box {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #1c1c1c;
+      border: 2px solid #a863ff;
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      color: #ccc;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
     }
 
     #updateBtn {
@@ -304,7 +330,7 @@
   <!-- Welcome -->
   <section class="welcome-section">
     <h1>Welcome to ULTIPLAY</h1>
-    <p>Play top web games in seconds. No installs. No loading screens. Just nonstop fun.</p>
+    <p>Play top web games in seconds No installs. No loading screens. Just nonstop fun.</p>
   </section>
 
   <!-- Games -->
@@ -316,7 +342,7 @@
       </a>
     </div>
     <div class="box">
-      <a href="Games/2048page.html">
+      <a href="Games/2048.html">
         <img src="Images/2048.png" alt="2048" loading="lazy">
         <div class="game-title">2048</div>
       </a>
@@ -334,28 +360,24 @@
       </a>
     </div>
   </div>
-  
-    <!-- Google AdSense Ad -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2674658827214439" crossorigin="anonymous"></script>
-  <ins class="adsbygoogle"
-       style="display:block; text-align:center; margin: 30px auto;"
-       data-ad-client="ca-pub-2674658827214439"
-       data-ad-slot="5280889402"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
 
-  <!-- Monthly Active Users Box -->
-  <div class="user-stats-box">
-    Monthly Active Users: <span id="userCount">0</span>+
+  <!-- Footer Links -->
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="about.html">About Us</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="contact.html">Contact Us</a>
   </div>
 
   <!-- Footer -->
   <footer>
     ULTIPLAY 2025©
   </footer>
+
+  <!-- Sticky Version Box -->
+  <div class="version-box">
+    Version: 1.0.0
+  </div>
 
   <!-- Update Log -->
   <div id="updateLog">
@@ -374,31 +396,11 @@
 
   <!-- Scripts -->
   <script>
-    // Welcome Sound
+    // Welcome Sound (on user interaction)
     document.addEventListener('click', () => {
       const audio = document.getElementById('introSound');
       if (audio) audio.play();
     }, { once: true });
-
-    // User Counter Animation
-    let count = 0;
-    const target = 18345;
-    const duration = 2000;
-    const increment = target / (duration / 30);
-
-    function animateCounter() {
-      const counter = document.getElementById('userCount');
-      const interval = setInterval(() => {
-        count += Math.floor(increment);
-        if (count >= target) {
-          count = target;
-          clearInterval(interval);
-        }
-        counter.textContent = count.toLocaleString();
-      }, 30);
-    }
-
-    window.onload = animateCounter;
 
     // Toggle Update Log
     const updateBtn = document.getElementById('updateBtn');
